@@ -3,6 +3,21 @@ name = "context-core"
 version = "0.1.0"
 edition = "2021"
 license = "Apache-2.0"
+description = "Deterministic context selection engine for AI agents and LLMs"
+repository = "https://github.com/contextenginehq/context-core"
+homepage = "https://github.com/contextenginehq/context-engine"
+documentation = "https://docs.rs/context-core"
+readme = "README.md"
+keywords = ["context", "retrieval", "deterministic", "mcp", "llm"]
+categories = ["algorithms", "text-processing"]
+
+include = [
+  "src/**",
+  "Cargo.toml",
+  "README.md",
+  "LICENSE",
+  "NOTICE",
+]
 
 [dependencies]
 sha2 = "0.10"

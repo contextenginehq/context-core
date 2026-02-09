@@ -1,5 +1,9 @@
 # context-core
 
+[![Crates.io](https://img.shields.io/crates/v/context-core.svg)](https://crates.io/crates/context-core)
+[![Docs.rs](https://docs.rs/context-core/badge.svg)](https://docs.rs/context-core)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+
 Deterministic core library for context caching and selection.
 
 `context-core` provides the foundational types and algorithms for the Context platform: document ingestion, cache building, content-hash versioning, term-frequency scoring, and token-budgeted selection. All operations are deterministic — identical inputs always produce identical outputs.
