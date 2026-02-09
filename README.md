@@ -60,3 +60,7 @@ make clean     # remove artifacts
 ## Spec references
 
 See `spec_refs.md` for links to the governing specifications.
+
+---
+
+"Context Engine" is a trademark of Context Engine Contributors. The software is open source under the [Apache License 2.0](LICENSE). The trademark is not licensed for use by third parties to market competing products or services without prior written permission.
