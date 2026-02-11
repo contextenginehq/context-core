@@ -116,6 +116,15 @@ The core library compiles, all 37 tests pass, and the three-phase selection pipe
 
   No standalone `verify_cache()` function exists. Individual checks are partially covered by `load_documents()` (checks 1, 3, 4 via version verification) but there is no single function that runs all 5 checks and reports results. Needed by both the CLI `inspect --verify` and MCP `inspect_cache` tool.
 
+### P1 — Enterprise Ingestion Foundation (see `context-specs/plans/enterprise_ingest_plan.md` Phase 0)
+
+- [ ] **`DocumentSource` trait + `RawDocument` type** — Define connector interface in `document::source` module. All enterprise connectors implement this trait. `RawDocument` carries pre-ingestion content + metadata.
+- [ ] **`ConnectorError` type** — Error variants: `AuthenticationFailed`, `FetchFailed`, `InvalidContent`, `PartialFetch`.
+- [ ] **Canonicalization utilities** — `document::canonicalize` module: line ending normalization, trailing whitespace trimming, trailing empty line removal, Unicode NFC normalization. Deterministic ordering of all transforms.
+- [ ] **`FilesystemSource` reference connector** — Migrate existing walkdir-based ingestion to `DocumentSource` trait. Must produce byte-identical caches to current `build` path.
+- [ ] **`ingest_from_source()` pipeline** — Orchestrates: `source.fetch_documents()` → UTF-8 validation → `Document::ingest()`. Configurable error policy (skip-and-warn vs abort-all).
+- [ ] **`unicode-normalization` dependency** — Add with `default-features = false` for NFC normalization.
+
 ### P2 — Test gaps
 
 - [ ] **Duplicate test consolidation** — Several test files contain identical or near-identical tests:
@@ -229,7 +238,7 @@ hex = "0.4"                # Hex encoding
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 thiserror = "1.0"          # Error derive macros
-chrono = { version = "0.4", features = ["serde"] }  # created_at timestamps
+chrono = { version = "0.4", features = ["serde", "clock"], default-features = false }  # created_at timestamps
 
 [dev-dependencies]
 tempfile = "3.24.0"
